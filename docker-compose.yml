@@ -23,9 +23,9 @@ services:
     ports:
       - 8848:8888
       - 9090-9099:9090-9099 # audio sockets
-      - 6006:6006 # tensorboard
+#      - 6006:6006 # tensorboard
     volumes:
-      - /home/paperspace/data:/home/jovyan/work
+      - '~/data:/home/jovyan/work'
     environment:
       GRANT_SUDO: "yes"
       JUPYTER_ENABLE_LAB: "yes"

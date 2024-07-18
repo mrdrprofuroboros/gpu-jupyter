@@ -338,9 +338,9 @@ RUN mamba install --quiet --yes \
 #  && torchviz==0.0.2 --extra-index-url https://download.pytorch.org/whl/cu121
 RUN set -ex &&  \
     pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cu121 \
-        torch==2.2.2 \
-        torchaudio==2.2.2 \
-        torchvision==0.17.2 && \
+        torch==2.3.1 \
+        torchaudio==2.3.1 \
+        torchvision==0.18.1 && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
@@ -353,10 +353,8 @@ USER $NB_UID
 # attempting to resolve the nvidia-cuda-nvcc package at the same time as nvidia-pyindex
 RUN pip install --no-cache-dir nvidia-pyindex && \
     pip install --no-cache-dir --pre --extra-index-url https://pypi.nvidia.com \
-        lmdeploy \
         nvidia-cuda-nvcc \
-        nvidia-cudnn-cu12 \
-        tensorrt_llm && \
+        tensorrt_llm==0.12.0.dev2024070900 && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
