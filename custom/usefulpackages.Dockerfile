@@ -8,6 +8,7 @@ RUN apt-get update &&  \
         apt-utils \
         curl \
         gcc \
+        git-lfs \
         graphviz \
         htop \
         iputils-ping \
@@ -15,14 +16,6 @@ RUN apt-get update &&  \
         openssh-client \
         portaudio19-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
-
-USER $NB_UID
-RUN set -ex && \
-    pip install --no-cache-dir \
-        graphviz==0.20.3 \
-        pytest==8.1.1 && \
-    fix-permissions "${CONDA_DIR}" && \
-    fix-permissions "/home/${NB_USER}"
 
 # upgrade jupyter-server for compatibility
 RUN set -ex && \
@@ -48,11 +41,14 @@ RUN set -ex && \
 RUN pip install --no-cache-dir \
         ffmpeg-python \
         jiwer \
+        kaldialign \
         onnxruntime \
+        openai-whisper \
+        soundfile \
         tokenizers==0.19.1 \
         websockets \
-        websocket-client && \
-    pip install flash-attn --no-build-isolation && \
+        websocket-client \
+        whisperspeech && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
